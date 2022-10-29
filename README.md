@@ -1,3 +1,3 @@
-# ReadWrite
-P2P messaging app
+# 🍐 to 🍐
+P2P messaging app for fruitful conversations
 
