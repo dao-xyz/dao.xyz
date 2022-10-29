@@ -1,0 +1,2 @@
+(self.webpackChunkpear2pear_fe=self.webpackChunkpear2pear_fe||[]).push([[745],{67745:(e,o,r)=>{"use strict";const n=r(19648),s=r(92214);e.exports.path=function(){const e=[s.resolve(s.join("/","..","go-ipfs","ipfs")),s.resolve(s.join("/","..","go-ipfs","ipfs.exe"))];for(const o of e)if(n.existsSync(o))return o;throw new Error("go-ipfs binary not found, it may not be installed or an error may have occurred during installation")}},19648:()=>{}}]);
+//# sourceMappingURL=745.7abf5fcf.chunk.js.map

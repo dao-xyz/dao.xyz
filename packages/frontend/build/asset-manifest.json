@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/web-app/static/css/main.2bb1e19b.css",
+    "main.js": "/web-app/static/js/main.a86e416a.js",
+    "static/js/592.cce14ac1.chunk.js": "/web-app/static/js/592.cce14ac1.chunk.js",
+    "static/js/528.b0410449.chunk.js": "/web-app/static/js/528.b0410449.chunk.js",
+    "static/js/745.7abf5fcf.chunk.js": "/web-app/static/js/745.7abf5fcf.chunk.js",
+    "static/js/820.500f244e.chunk.js": "/web-app/static/js/820.500f244e.chunk.js",
+    "static/js/529.47ce60b0.chunk.js": "/web-app/static/js/529.47ce60b0.chunk.js",
+    "static/js/556.cb66aa71.chunk.js": "/web-app/static/js/556.cb66aa71.chunk.js",
+    "static/js/757.335630aa.chunk.js": "/web-app/static/js/757.335630aa.chunk.js",
+    "static/media/logo.png": "/web-app/static/media/logo.9b90bac307c346be8444.png",
+    "static/media/shiba_inu_taiki.jpeg": "/web-app/static/media/shiba_inu_taiki.220ea0bdfa738f53dddc.jpeg",
+    "static/media/rpc.cjs": "/web-app/static/media/rpc.93e8f6196bd2c425bf03.cjs",
+    "index.html": "/web-app/index.html",
+    "main.2bb1e19b.css.map": "/web-app/static/css/main.2bb1e19b.css.map",
+    "main.a86e416a.js.map": "/web-app/static/js/main.a86e416a.js.map",
+    "745.7abf5fcf.chunk.js.map": "/web-app/static/js/745.7abf5fcf.chunk.js.map",
+    "529.47ce60b0.chunk.js.map": "/web-app/static/js/529.47ce60b0.chunk.js.map",
+    "556.cb66aa71.chunk.js.map": "/web-app/static/js/556.cb66aa71.chunk.js.map",
+    "757.335630aa.chunk.js.map": "/web-app/static/js/757.335630aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2bb1e19b.css",
+    "static/js/main.a86e416a.js"
+  ]
+}

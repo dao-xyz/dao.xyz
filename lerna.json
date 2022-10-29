@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "packages/frontend",
+    "packages/library"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}
