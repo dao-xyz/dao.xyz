@@ -20,8 +20,6 @@ module.exports = function override(config, env) {
         "fs": false,
         "assert": false
 
-
-
     }
     config.module.rules = [...config.module.rules,
     {

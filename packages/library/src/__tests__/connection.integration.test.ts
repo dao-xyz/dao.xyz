@@ -1,7 +1,13 @@
 
+import { Session } from '@dao-xyz/peerbit-test-utils';
 import { } from '../post';
+import { multiaddr } from '@multiformats/multiaddr'
+
 describe('integration', () => {
+
     test('a', async () => {
+        const session = await Session.connected(1);
+        await session.peers[0].ipfs.swarm.connect(multiaddr("/ip4/127.0.0.1/tcp/58802/p2p/12D3KooWR2CgsDY6ZbnvpVwhsFSyaoPYatnn8iWSgeQWLL98SrwJ"));
         /* const peer = await getPeer(); */
         // await peer.node.swarm.connect("/dns4/node2.blogchain.app/tcp/443/wss/p2p/12D3KooWBidnLf4iRGgZpeFVCqQjNzAsSx2opZPbG8o9tpCf2rG5")
         //await peer.node.swarm.connect("/dns4/node1.blogchain.app/tcp/443/wss/p2p/12D3KooW9qeCwGnG7ncn1YFh7Kth7oH93TCmMuAzdafV8WwGTMkX");

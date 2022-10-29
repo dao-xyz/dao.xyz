@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { IPFS } from 'ipfs-core-types';
 import { startIpfs } from 'pear2pear';
-
 import { useAlert } from "./AlertContext";
 import { useWallet } from "@dao-xyz/wallet-adapter-react";
 import { MetaMaskWalletAdapter } from '@dao-xyz/wallet-adapter-metamask';
@@ -93,11 +91,11 @@ export const PeerProvider = ({ children }: { children: JSX.Element }) => {
         })).then(async (node) => {
 
             if (process.env.REACT_APP_NETWORK === 'local') {
-                await node.api.swarm.connect(multiaddr("/ip4/127.0.0.1/tcp/5432/ws/p2p/12D3KooWC1Pb6XmSxY4YKGUPicYME8Ea27Y2gS4SbFKRndPzgF4C"))
+                await node.api.swarm.connect(multiaddr("/ip4/127.0.0.1/tcp/58802/p2p/12D3KooWR2CgsDY6ZbnvpVwhsFSyaoPYatnn8iWSgeQWLL98SrwJ"))
             }
 
             else {
-                const bootstrapConfig: { bootstrap: string[] } = await (await fetch("https://dao-xyz-setup.s3.amazonaws.com/bootstrap-peers.json")).json()
+                const bootstrapConfig: { bootstrap: string[] } = { bootstrap: ["/dns4/e182fe9c0b82c9fe13b5c6470cc6e6c4edf2144c.peerchecker.com/tcp/4002/wss/p2p/12D3KooWCDvdPTTNy5Aj59wQtRQpYjnGCuobVJnhhFb4DRXdkbHw"] }
                 await Promise.all(bootstrapConfig.bootstrap.map((bootstrap) => node.api.swarm.connect(multiaddr(bootstrap)).catch(error => {
                     console.error("PEER CONNECT ERROR", error);
                     alertError("Failed to connect to peers. Please try again later.")

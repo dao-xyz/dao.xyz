@@ -65,7 +65,7 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     if (peer?.ipfs) {
       setLoadingRoot(true);
-      peer.open(config.posts).then(posts => {
+      peer.open<Posts>(config.posts).then(posts => {
         setRoot(posts);
       }).finally(() => {
         setLoadingRoot(false);

@@ -15,7 +15,6 @@ export const createRootPosts = (options: { id?: string, identity?: PublicSignKey
 
     return posts
 }
-
 export const setupRoot = async (config: { replicationTopic: string, network?: TrustedNetwork, peer: Peerbit }) => {
     let posts: Posts;
     const { network, peer, replicationTopic } = config;
