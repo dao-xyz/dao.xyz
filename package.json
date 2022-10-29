@@ -24,7 +24,6 @@
     "build": "lerna run build",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest test  -c jest.config.unit.ts  --forceExit",
     "test:integration": "node --experimental-vm-modules ./node_modules/.bin/jest test -c jest.config.integration.ts --forceExit",
-    "publish": "lerna publish from-package",
     "deploy": "yarn deploy:docs && yarn deploy:example",
     "deploy:docs": "yarn docs && gh-pages --dist docs --dotfiles",
     "deploy:example": "gh-pages --dist packages/starter/example/out --dest example --dotfiles",
