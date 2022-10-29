@@ -1,6 +1,5 @@
 {
   "packages": [
-    "packages/frontend",
     "packages/library"
   ],
   "version": "independent",

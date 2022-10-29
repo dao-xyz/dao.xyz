@@ -5,8 +5,7 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/library",
-      "packages/frontend"
+      "packages/library"
     ],
     "nohoist": [
       "**/@babel/preset-env",
