@@ -1,8 +1,66 @@
-# 🍐2🍐
-P2P messaging app for fruitful conversations
+
+<br>
+<p align="center">
+    <img width="200" src="./pear.png"  alt="screenshot">
+</p>
+<h1 align="center">
+    <strong>
+        Pear2Pear
+   </strong>
+</h1>
+<h3 align="center">
+    P2P messaging app for fruitful conversations
+</h3>
+<br>
 
 
 
+
+This project is bases purely on IPFS and Libp2p through a library called Peerbit (that is a fork of OrbitDB) that lets you define databases on top of IPFS.
+
+
+## Written for the ETHLisbon hackathon
+Frontend is **not working** at the moment dependency with gossip-pubsub with IPFS 65 in the ESM build (gossip sub)
+
+We need this this JS-IPFS PR released ```https://github.com/ipfs/js-ipfs/pull/4239``` to make things work again. 
+
+
+## How it works
+
+The database setup is very simple we have 
+
+[Posts](./packages/library/src/post.ts)
+
+which allows you to have a document databases of ```Post``` 
+
+
+[Post](./packages/library/src/post.ts) (the second class)
+
+is the post container. Which can either have static or dynamic content (subdatabases)
+
+[CollaborativeText](./packages/library/src/post-types.ts)
+
+Is a subdatabase you can put in a post. This post type allows multiple peers edit a post together
+
+All databases support optional ACL layer (see databases above for reference). 
+
+
+Any peer can open any of these databases and make changes. Changes are propagating through you the network and are respected if you are complient with ACL settings of other peers. I.e. you can "always" write locally but changes might not be absorbed by peers.
+
+
+## Proof of things that is working.
+
+Clone this repo 
+
+and run 
+```sh 
+yarn install
+yarn test
+```
+
+and you will run multiple integration tests. Most importantly [post logic tests](./packages/library/src/__tests__/post.integration.test.ts) that does the following. 
+
+Both tests checks whether one peer can create a post and send it unencrypted or encrypted to another peer. The second peer edits the post (and is allowed to because of ACL layer (which itself is another database)). The first peer will then instantly get update of the edits. In the encrypted test, the relay does not know anything about the contents of the posts, yet allow peers to search in the Log for metadata.
 
 
 ## Run a node 
@@ -39,3 +97,12 @@ Start node
 ```
 pear2pear start --topic world
 ```
+
+
+
+## How frontend looks right now
+<p align="center">
+    <img width="400" src="./screenshot.png"  alt="screenshot">
+</p>
+
+

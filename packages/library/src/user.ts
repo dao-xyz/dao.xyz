@@ -57,16 +57,4 @@ export class UsersInterface extends Program {
     async setup(): Promise<void> {
         return this.users.setup({ type: User }) // todo can append, can read
     }
-
-    /* async getUserFromKey(key: IdentitySerializable, trust: P2PTrustChain): Promise<User> {
-        // They key might not be the acut
-        let path = getTargetPath(key, (key) => this.users.db.queryDocuments((doc) => doc.rootTrust.equals(key))?.length > 0, trust.db)
-        if (!path) {
-            return undefined;
-        }
-        const rootTrust = path.length > 0 ? path[0].truster : key;
-        // TODO we query right user 2 times
-        const user = this.users.db.queryDocuments((doc) => doc.rootTrust.equals(rootTrust))[0] as User;
-        return user;
-    } */
 }
