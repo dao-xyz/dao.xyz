@@ -47,6 +47,10 @@ All databases support optional ACL layer (see databases above for reference).
 
 Any peer can open any of these databases and make changes. Changes are propagating through you the network and are respected if you are complient with ACL settings of other peers. I.e. you can "always" write locally but changes might not be absorbed by peers.
 
+## Features
+- Dynamic post format: Post can contain "subprograms" which can be extend to any post type. For now there are just two post types: 
+"CollaborativeText" (A text document you can edit together) and "NetworkPost" (that allows you to share your IPFS Id info)
+- E2EE: Because if this project relies on Peerbit, we can write E2EE encrypted messages. 
 
 ## Proof of things that is working.
 
