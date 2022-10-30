@@ -1,4 +1,3 @@
-import { ChildCare, RocketLaunch, Send } from "@mui/icons-material";
 import { Alert, Box, Button, Card, CardContent, Container, Grid, IconButton, Paper, TextField, Toolbar, Typography } from "@mui/material";
 import React, { FC, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { PostFeed } from "./PostFeed";

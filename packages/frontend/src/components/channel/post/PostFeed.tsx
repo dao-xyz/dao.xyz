@@ -126,7 +126,6 @@ export const PostFeed = (props: { parentPosts: Posts, onFeedChange?: () => void 
     const [childrenPosts, setChildrenPosts] = useState<{ [key: string]: Post[] }>({});
     const [messagesLoading, setMessagesLoading] = useState(false);
     const { loading } = usePeer();
-    const theme = useTheme();
 
     const childrenCount = (key: string) => childrenPosts[key] ? childrenPosts[key].length : 0;
     const updateContent = () => {

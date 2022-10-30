@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router";
-import { Navigate } from 'react-router';
 import { ProfileUser, USERNAME_PATH_PARAM } from "../pages/user/ProfileUser";
 import Landing from "../pages/landing/Landing";
 import { NewUser } from "../pages/user/NewUser";
