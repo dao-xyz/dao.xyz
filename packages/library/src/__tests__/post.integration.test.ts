@@ -47,9 +47,12 @@ describe('node', () => {
         post = await peer.open(post, { replicationTopic });
         await post.getContent<ProgramContent>().getProgram<CollaborativeText>().text.add("hello", new Range({ offset: 0, length: "hello".length }))
 
+        // Add access policy so peer 3 can edit
         await post.acl?.access.put(new Access({ accessTypes: [AccessType.Any], accessCondition: new PublicKeyAccessCondition({ key: peer3.identity.publicKey }) }))
 
-        // Peer 3 lists all posts and edits
+
+        // Peer 3 joins later, and will not get messages directly, because it has not yet started subscribing
+        // hence instead Peer3 lists all posts and edits using a query
         const posts3 = await peer3.open<Posts>(posts.address, { replicate: false, replicationTopic })
         let results: Results = undefined as any;
         await posts3.posts.index.search.query(new PageQueryRequest({ queries: [] }), (r) => {
@@ -58,13 +61,16 @@ describe('node', () => {
             waitForAmount: 1
         });
 
+        // Peer 3 now opens the database with the post that it has found
         let postFromResult = (results.results[0] as ResultWithSource).source as Post;
         postFromResult = await peer3.open<Post>(postFromResult, { replicate: false, replicationTopic })
+
+        // Peer 3 modifies the post
         await (postFromResult.getContent<ProgramContent>()).getProgram<CollaborativeText>().text.add(" world", new Range({ offset: "hello".length, length: " world".length }))
 
 
 
-        // Peer 1 gets the change immidiately since it is replicating
+        // Peer 1 gets the change immidiately since it is already replicating
         await waitFor(() => (post.getContent<ProgramContent>().getProgram<CollaborativeText>().text.store.oplog.values.length) === 2);
         expect(await (post.getContent<ProgramContent>().getProgram<CollaborativeText>().text.toString())).toEqual('hello world');
     })
@@ -83,8 +89,12 @@ describe('node', () => {
 
         await posts.posts.put(post, { reciever: { clock: undefined, signature: encryptionReaders, payload: encryptionReaders } });
 
+        // Wait for the replicator to recieve the encrypted post
         await waitFor(() => (peer2.programs[replicationTopic][posts.address.toString()]?.program as Posts)?.posts.store.oplog.values.length === 1);
 
+
+
+        // Write encrypted message
         post = await peer.open(post, { replicate: false, replicationTopic });
         await (post.getContent<ProgramContent>().getProgram<CollaborativeText>()).text.add("hello", new Range({ offset: 0, length: "hello".length }), {
             reciever: {
@@ -94,12 +104,17 @@ describe('node', () => {
             }
         })
 
+        // Add access policy so peer 3 can edit
         await post.acl?.access.put(new Access({ accessTypes: [AccessType.Any], accessCondition: new PublicKeyAccessCondition({ key: peer3.identity.publicKey }) }))
 
         await waitFor(() => (peer2.programs[replicationTopic][posts.address.toString()]?.program as Posts)?.posts.store.oplog.values.length === 1);
         // Peer 3 joins later and posts which can be red
         const posts3 = await peer3.open<Posts>(posts.address, { replicate: false, replicationTopic })
 
+
+        // Peer 3 joins later, and will not get messages directly, because it has not yet started subscribing
+        // hence instead Peer3 lists all posts and edits using a query. This time however, in comparison to the unencrypted test above,
+        // we have to query for meta data ("find all logs which I can read")
         let heads: HeadsMessage = undefined as any;
         await posts3.posts.logIndex.query.query(new LogQueryRequest({
             queries: [
@@ -114,13 +129,15 @@ describe('node', () => {
         expect(posts3.posts.store.oplog.values).toHaveLength(0);
         await posts3.posts.store.sync(heads.heads) // update the state of the new intel
         await waitFor(() => posts3.posts.index.size === 1);
-        // manually find the new (1) posts, open, and write something 
+
+        // Peer 3 modifies the post
+        // manually find the new posts (will only be one), and adds content to the text
         for (let post of posts3.posts.index._index.values()) {
             let openPost = await peer3.open<Post>(post.value, { replicate: false, replicationTopic })
             await (openPost.getContent<ProgramContent>().getProgram<CollaborativeText>()).text.add(" world", new Range({ offset: "hello".length, length: " world".length }), { reciever: { clock: undefined, signature: undefined, payload: encryptionReaders } })
         }
 
-        // Peer 1 gets the change immidiately since it is replicating
+        // Peer 1 gets the change immidiately since it is already replicating
         await waitFor(() => ((post.getContent<ProgramContent>().getProgram<CollaborativeText>()).text.store.oplog.values.length) === 2);
         const toString = await ((post.getContent<ProgramContent>().getProgram<CollaborativeText>()).text.toString());
         expect(toString).toEqual('hello world');
