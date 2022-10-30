@@ -16,11 +16,11 @@
 
 
 
-This project is bases purely on IPFS and Libp2p through a library called Peerbit (that is a fork of OrbitDB) that lets you define databases on top of IPFS.
+This project is based purely on IPFS and Libp2p through a library called Peerbit (that is a fork of OrbitDB) that lets you define databases on top of IPFS.
 
 
 ## Written for the ETHLisbon hackathon
-Frontend is **not working** at the moment dependency with gossip-pubsub with IPFS 65 in the ESM build (gossip sub)
+**Frontend is not working at the moment as dependency with gossip-pubsub with IPFS 65 in the ESM build (gossip sub)** 
 
 We need this this JS-IPFS PR released ```https://github.com/ipfs/js-ipfs/pull/4239``` to make things work again. 
 
@@ -51,6 +51,7 @@ Any peer can open any of these databases and make changes. Changes are propagati
 - Dynamic post format: Post can contain "subprograms" which can be extend to any post type. For now there are just two post types: 
 "CollaborativeText" (A text document you can edit together) and "NetworkPost" (that allows you to share your IPFS Id info)
 - E2EE: Because if this project relies on Peerbit, we can write E2EE encrypted messages. 
+- Can be used with any wallet. The only things you need to integrate the wallet to let use read the public key and sign messages. As of now it support ```Metamask``` but could easily be (and will) be integrated with ```WalletConnect```
 
 ## Proof of things that is working.
 
