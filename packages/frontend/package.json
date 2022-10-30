@@ -1,7 +1,7 @@
 {
-  "name": "_",
+  "name": "fs",
   "version": "0.1.1",
-  "private": false,
+  "private": true,
   "homepage": "https://pear2pear.github.io/web-app/",
   "license": "Apache-2.0",
   "dependencies": {

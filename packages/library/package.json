@@ -47,7 +47,7 @@
     "@dao-xyz/peerbit-document": "^0.0.108",
     "@dao-xyz/peerbit-dynamic-access-controller": "^0.0.63",
     "@dao-xyz/peerbit-network-discovery": "^0.0.34",
-    "@dao-xyz/peerbit-node": "^0.0.26",
+    "@dao-xyz/peerbit-node": "^0.0.27",
     "@dao-xyz/peerbit-string": "^0.0.97",
     "buffer": "^6.0.3"
   },
