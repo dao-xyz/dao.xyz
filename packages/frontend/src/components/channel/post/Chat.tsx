@@ -9,10 +9,9 @@ import { ChannelLabelBreadcrumb } from "../ChannelLabelBreadcrumb";
 import CastleIcon from '@mui/icons-material/Castle';
 import InfoIcon from '@mui/icons-material/Info';
 import { Post, Posts } from 'pear2pear';
-export const Chat: FC<{ parentPost?: Posts }> = ({ parentPost: parentPostIn }) => {
+export const Chat: FC<{}> = ({ }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [initialFeed, setInitialFeed] = React.useState(false);
-    const [parentPost, setParentPost] = React.useState(parentPostIn);
 
     const [showNewMessageAlert, setShowNewMessageAlert] = React.useState(false);
     const [createdPost, setCreatedPost] = React.useState<string | undefined>(undefined);
@@ -69,11 +68,7 @@ export const Chat: FC<{ parentPost?: Posts }> = ({ parentPost: parentPostIn }) =
         return () => window.removeEventListener("scroll", onScroll);
     }, [scrollTop]);
 
-    useEffect(() => {
-        if (!parentPost) {
-            setParentPost(posts)
-        }
-    }, [parentPost?.address?.toString(), posts?.address?.toString()])
+
     const onFeedChange = () => {
         let isAtBottom = contentRef?.current?.scrollHeight - contentRef?.current?.scrollTop === contentRef?.current?.clientHeight;
         if (!isAtBottom) {
@@ -86,10 +81,10 @@ export const Chat: FC<{ parentPost?: Posts }> = ({ parentPost: parentPostIn }) =
         }
 
     }
+    console.log('parent post ? ', posts)
 
 
     return <Box sx={{ backgroundColor: (theme as any).palette.mode == 'light' ? (theme as any).palette.grey["50"] : (theme as any).palette.background.default, paddingBottom: "env(safe-area-inset-bottom)" }}>
-
         <Box >
             <Grid container sx={{ pr: 2, pl: 2 }} direction="row" justifyContent='right'>
                 <Grid item sx={{ mr: 'auto' }}>  <ChannelLabelBreadcrumb /></Grid>
@@ -103,9 +98,7 @@ export const Chat: FC<{ parentPost?: Posts }> = ({ parentPost: parentPostIn }) =
                         <Grid item sx={{ maxWidth: "md", width: '100%', }}>
                             <Box sx={{ /* ml: 2, pr: 16 + "px"  */ }}>
                                 <Box sx={{ width: '100%' }}>
-
-                                    <PostFeed onFeedChange={onFeedChange} parentPosts={parentPost} />
-
+                                    <PostFeed onFeedChange={onFeedChange} parentPosts={posts} />
                                 </Box>
                             </Box>
                         </Grid>
@@ -117,7 +110,7 @@ export const Chat: FC<{ parentPost?: Posts }> = ({ parentPost: parentPostIn }) =
                         <Grid item sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
                             <Card sx={{ width: '100%', flex: 1, maxWidth: 'md' }} raised elevation={8}>
                                 <CardContent sx={{ pb: "4px !important" }}>
-                                    {parentPost?.address?.toString() ? <NewPost previewable={true} onCreation={setCreatedPost} parentPost={undefined} /> : <></>}
+                                    {posts?.address?.toString() ? <NewPost previewable={true} onCreation={setCreatedPost} parentPost={undefined} /> : <></>}
                                 </CardContent>
                             </Card>
                         </Grid>

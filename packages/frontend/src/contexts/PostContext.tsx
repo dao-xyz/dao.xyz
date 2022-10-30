@@ -3,9 +3,9 @@ import { Access, AccessType } from '@dao-xyz/peerbit-dynamic-access-controller';
 import { usePeer } from "./PeerContext";
 import { getParentPostChain, getParentPostChainTree, PostTree } from "../utils/postUtils";
 import { useConfig } from "./ConfigContext";
-import { PageQueryRequest } from "@dao-xyz/peerbit-anysearch";
 import { Post, Posts } from "pear2pear";
 import { Address } from '@dao-xyz/peerbit-store';
+
 interface PostSelection {
   selectionPath: Post[];
   selectionTree: PostTree;
@@ -65,20 +65,26 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     if (peer?.ipfs) {
       setLoadingRoot(true);
-      peer.open<Posts>(config.posts).then(posts => {
-        setRoot(posts);
-      }).finally(() => {
-        setLoadingRoot(false);
-      })
+      if (!config.posts.initialized) {
+        peer.open<Posts>(Address.parse("/peerbit/zdpuB2pw8hxT8EK4WJ1DMeGPUfxoferspohXTmMNhV9nTguBD"), { replicationTopic: config.replicationTopic }).then(posts => {
+          setRoot(posts);
+          console.log('loaded posts: ' + config.posts)
+        }).finally(() => {
+          setLoadingRoot(false);
+        })
+      }
+      else {
+        setRoot(config.posts)
+      }
     }
   },
-    [config?.posts?.address?.toString()])
+    [config?.posts?.address?.toString(), !!peer?.ipfs])
   const selectionMemo = React.useMemo(
     () => ({
       selection,
       loading,
       root,
-      posts: config.posts,
+      posts: root,
       select: async (address: string) => {
         if (!peer?.ipfs) {
           return undefined;

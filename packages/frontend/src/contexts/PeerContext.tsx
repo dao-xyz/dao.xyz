@@ -9,6 +9,7 @@ import { Peerbit } from '@dao-xyz/peerbit';
 import { Identity } from '@dao-xyz/ipfs-log';
 import { Ed25519PublicKey, Secp256k1PublicKey } from '@dao-xyz/peerbit-crypto';
 import { BaseMessageSignerWalletAdapter, SignerWalletAdapter } from "@dao-xyz/wallet-adapter-base";
+import { waitFor } from '@dao-xyz/peerbit-time';
 
 interface IPeerContext {
     peer: Peerbit,
@@ -81,7 +82,8 @@ export const PeerProvider = ({ children }: { children: JSX.Element }) => {
                     ...(process.env.REACT_APP_NETWORK === 'local' ? {
                         transports: [ // Add websocket impl so we can connect to "unsafe" ws (production only allows wss)
                             webSockets({
-                                filter: (addrs) => addrs.filter((addr) => addr.toString().indexOf("/ws/") != -1 || addr.toString().indexOf("/wss/") != -1)
+                                filter: (addrs) => addrs.filter((addr) => addr.toString().indexOf("/ws/") != -1 || addr.toString().indexOf("/wss/") != -1),
+
                             })
                         ]
                     } : {})
@@ -91,7 +93,7 @@ export const PeerProvider = ({ children }: { children: JSX.Element }) => {
         })).then(async (node) => {
 
             if (process.env.REACT_APP_NETWORK === 'local') {
-                await node.api.swarm.connect(multiaddr("/ip4/127.0.0.1/tcp/58802/p2p/12D3KooWR2CgsDY6ZbnvpVwhsFSyaoPYatnn8iWSgeQWLL98SrwJ"))
+                await node.api.swarm.connect(multiaddr("/ip4/192.168.1.212/tcp/8081/ws/p2p/12D3KooWA5LWHc5FrLkMJCFGhERuiFuXxP2GYd5D7yExK5M72DBN"))
             }
 
             else {
@@ -105,18 +107,21 @@ export const PeerProvider = ({ children }: { children: JSX.Element }) => {
 
             console.log('Connected to swarm!');
             // TODO fix types
-            const identity: Identity = {
-                publicKey: (wallet.wallet.adapter.publicKey as (Ed25519PublicKey | Secp256k1PublicKey)) as any,
-                sign: (data) => (wallet.wallet.adapter as BaseMessageSignerWalletAdapter).signMessage(data)
-            };
+            waitFor(() => wallet.wallet.adapter.connected).then(() => {
+                const identity: Identity = {
+                    publicKey: (wallet.wallet.adapter.publicKey as (Ed25519PublicKey | Secp256k1PublicKey)) as any,
+                    sign: (data) => (wallet.wallet.adapter as BaseMessageSignerWalletAdapter).signMessage(data)
+                };
 
-            console.log('Identity', identity.publicKey.toString())
-            Peerbit.create(node.api, { identity }).then(async (peer) => {
-                console.log("Created peer", peer);
-                setPeer(peer);
-                console.log('subs', (await node.api.pubsub.ls()))
+                console.log('Identity', identity.publicKey.toString())
+                Peerbit.create(node.api, { identity }).then(async (peer) => {
+                    console.log("Created peer", peer);
+                    setPeer(peer);
+                    console.log('subs', (await node.api.pubsub.ls()))
 
+                })
             })
+
         }).finally(() => {
             setLoading(false);
         })

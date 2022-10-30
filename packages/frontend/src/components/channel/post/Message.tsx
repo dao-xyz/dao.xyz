@@ -11,29 +11,39 @@ import shiba from "../../../../src/shiba_inu_taiki.jpeg";
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useFeatures } from "../../../contexts/FeatureContext";
-import { Post, ProgramContent } from 'pear2pear';
+import { CollaborativeText, Post, ProgramContent } from 'pear2pear';
 import { usePeer } from "../../../contexts/PeerContext";
+import { useConfig } from "../../../contexts/ConfigContext";
 
 export const Message: FC<{ post: Post, commentsCount: number }> = ({ post, commentsCount }) => {
 
     const [content, setContent] = useState<string | undefined>(undefined);
     const [username, setUsername] = useState<string | undefined>(undefined);
     const { peer } = usePeer();
+    const { config } = useConfig();
 
     const [date, setDate] = useState<string | undefined>(undefined);
     const { openNotReady } = useFeatures();
 
     useEffect(() => {
         const load = async () => {
-            /* let db = (post.getContent<ProgramContent>.);
+            /* let db = ();
             //  await db.init(peer.orbitDB, undefined) // TODO
             console.log('query!')
             db.toStringRemote((content) => {
                 console.log('Succeeded to load content', content);
                 setContent(content)
             }); */
-            setContent('x');
-
+            const content = post.getContent<ProgramContent>().getProgram<CollaborativeText>();
+            peer.open(content, {
+                replicate: false, onUpdate: () => {
+                    content.text.toString().then((string) => {
+                        setContent(string);
+                    })
+                }
+            }).then(() => {
+                content.text.toString({ remote: { callback: (c) => { setContent(c) }, queryOptions: { maxAggregationTime: 5000 } } })
+            })
         }
         load();
         /* .catch((error) => {
@@ -43,7 +53,7 @@ export const Message: FC<{ post: Post, commentsCount: number }> = ({ post, comme
             setUsername(user.data.name);
          }) */
         setDate(new Date(Number(post.timestamp) * 1000).toLocaleDateString())
-    }, [])
+    }, [post?.address?.toString()])
     return <Card raised elevation={2} >
         <CardContent sx={{}}>
             <Grid container spacing={1} direction="row">
