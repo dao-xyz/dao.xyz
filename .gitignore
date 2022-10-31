@@ -5,6 +5,7 @@ orbit-db-stores
 lib
 peerbit/
 .vscode
+packages/frontend/build
 /keystore/
 keystore-test
 **/__tests__/**/tmp
