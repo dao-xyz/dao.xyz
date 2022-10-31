@@ -107,19 +107,17 @@ export const PeerProvider = ({ children }: { children: JSX.Element }) => {
 
             console.log('Connected to swarm!');
             // TODO fix types
-            waitFor(() => wallet.wallet.adapter.connected).then(() => {
-                const identity: Identity = {
-                    publicKey: (wallet.wallet.adapter.publicKey as (Ed25519PublicKey | Secp256k1PublicKey)) as any,
-                    sign: (data) => (wallet.wallet.adapter as BaseMessageSignerWalletAdapter).signMessage(data)
-                };
+            const identity: Identity = {
+                publicKey: (wallet.publicKey as (Ed25519PublicKey | Secp256k1PublicKey)) as any,
+                sign: (data) => (wallet.signMessage(data))
+            };
 
-                console.log('Identity', identity.publicKey.toString())
-                Peerbit.create(node.api, { identity }).then(async (peer) => {
-                    console.log("Created peer", peer);
-                    setPeer(peer);
-                    console.log('subs', (await node.api.pubsub.ls()))
+            console.log('Identity', identity.publicKey.toString())
+            Peerbit.create(node.api, { identity }).then(async (peer) => {
+                console.log("Created peer", peer);
+                setPeer(peer);
+                console.log('subs', (await node.api.pubsub.ls()))
 
-                })
             })
 
         }).finally(() => {

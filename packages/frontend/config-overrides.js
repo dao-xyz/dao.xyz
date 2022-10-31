@@ -5,9 +5,10 @@
     addWebpackPlugin,
 } = require('customize-cra');
 const { DefinePlugin } = require('webpack');
- */
+ */const { addBabelPlugins, override } = require("customize-cra");
 
-module.exports = function override(config, env) {
+
+module.exports = config => {
     let loaders = config.resolve
     loaders.fallback = {
         "crypto": require.resolve("crypto-browserify"),
@@ -21,14 +22,15 @@ module.exports = function override(config, env) {
         "assert": false
 
     }
-    config.module.rules = [...config.module.rules,
-    {
-        test: /\.m?js/,
-        resolve: {
-            fullySpecified: false
-        }
-    }
-    ]
+    /*   config.module.rules = [...config.module.rules,
+      {
+          test: /\.m?js/,
+          resolve: {
+              fullySpecified: false
+          }
+      }
+      ] */
+
     /* config.plugins.push(new webpack.DefinePlugin({
         process: { env: {} }
     })) */
@@ -44,5 +46,10 @@ module.exports = function override(config, env) {
  
      */
 
-    return config
+    return override(
+        ...addBabelPlugins([
+            '@babel/plugin-transform-typescript',
+            { allowNamespaces: true },
+        ]),
+    )(config);
 }

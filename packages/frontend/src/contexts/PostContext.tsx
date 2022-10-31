@@ -66,7 +66,8 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
     if (peer?.ipfs) {
       setLoadingRoot(true);
       if (!config.posts.initialized) {
-        peer.open<Posts>(Address.parse("/peerbit/zdpuB2pw8hxT8EK4WJ1DMeGPUfxoferspohXTmMNhV9nTguBD"), { replicationTopic: config.replicationTopic }).then(posts => {
+        // Address.parse("/peerbit/zdpuB2pw8hxT8EK4WJ1DMeGPUfxoferspohXTmMNhV9nTguBD")
+        peer.open<Posts>(new Posts({ id: 'root' }), { replicationTopic: config.replicationTopic }).then(posts => {
           setRoot(posts);
           console.log('loaded posts: ' + config.posts)
         }).finally(() => {
