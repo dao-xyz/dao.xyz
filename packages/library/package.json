@@ -1,15 +1,15 @@
 {
-  "name": "dao.xyz",
+  "name": "daoxyz",
   "version": "0.0.8",
   "author": "dao.xyz",
-  "repository": "https://github.com/marcus-pousette",
+  "repository": "https://github.com/dao-xyz/dao.xyz",
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
   "bin": {
     "daoxyz": "./lib/esm/bin.js"
   },
-  "private": "false",
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
