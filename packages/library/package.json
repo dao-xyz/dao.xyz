@@ -9,6 +9,7 @@
   "bin": {
     "daoxyz": "./lib/esm/bin.js"
   },
+  "private": "false",
   "publishConfig": {
     "access": "public"
   },
