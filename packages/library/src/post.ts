@@ -19,7 +19,7 @@ import { CollaborativeText } from './post-types.js';
  * Content
  */
 
-@variant([1, 0])
+@variant("post")
 export class Post extends Program {
 
     @field({ type: 'u64' })

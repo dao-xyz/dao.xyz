@@ -43,12 +43,12 @@
     "yargs": "^17.6.0"
   },
   "dependencies": {
-    "@dao-xyz/peerbit": "^0.0.37",
-    "@dao-xyz/peerbit-document": "^0.0.108",
-    "@dao-xyz/peerbit-dynamic-access-controller": "^0.0.63",
-    "@dao-xyz/peerbit-network-discovery": "^0.0.34",
-    "@dao-xyz/peerbit-node": "^0.0.27",
-    "@dao-xyz/peerbit-string": "^0.0.97",
+    "@dao-xyz/peerbit": "^0.0.38",
+    "@dao-xyz/peerbit-document": "^0.0.109",
+    "@dao-xyz/peerbit-dynamic-access-controller": "^0.0.64",
+    "@dao-xyz/peerbit-network-discovery": "^0.0.35",
+    "@dao-xyz/peerbit-node": "^0.0.28",
+    "@dao-xyz/peerbit-string": "^0.0.98",
     "@libp2p/websockets": "^5.0.0",
     "buffer": "^6.0.3"
   },

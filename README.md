@@ -1,13 +1,8 @@
 
 <br>
 <p align="center">
-    <img width="200" src="./pear.png"  alt="screenshot">
+    <img width="200" src="./logo.png"  alt="logo">
 </p>
-<h1 align="center">
-    <strong>
-        Pear2Pear
-   </strong>
-</h1>
 <h3 align="center">
     P2P messaging app for fruitful conversations
 </h3>
@@ -16,11 +11,6 @@
 
 
 
-This project is based purely on IPFS and Libp2p through a library called Peerbit (that is a fork of OrbitDB) that lets you define databases on top of IPFS.
-
-
-## Written for the ETHLisbon hackathon
-**Frontend is not working at the moment as dependency with gossip-pubsub with IPFS 65 in the ESM build (gossip sub)** 
 
 We need this this JS-IPFS PR released ```https://github.com/ipfs/js-ipfs/pull/4239``` to make things work again. 
 
@@ -102,12 +92,5 @@ Start node
 ```
 pear2pear start --topic world
 ```
-
-
-
-## How frontend looks right now
-<p align="center">
-    <img width="400" src="./screenshot.png"  alt="screenshot">
-</p>
 
 

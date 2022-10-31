@@ -58,7 +58,7 @@ describe('node', () => {
         await posts3.posts.index.search.query(new PageQueryRequest({ queries: [] }), (r) => {
             results = r;
         }, {
-            waitForAmount: 1
+            waitForAmount: 1,
         });
 
         // Peer 3 now opens the database with the post that it has found
