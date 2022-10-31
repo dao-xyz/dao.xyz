@@ -1,18 +1,21 @@
-
 <br>
 <p align="center">
     <img width="200" src="./logo.png"  alt="logo">
 </p>
 <h3 align="center">
-    P2P messaging app for fruitful conversations
+   Communication app with flexibility and privacy
 </h3>
 <br>
 
+DAO.xyz is creating a communications app where we rethink first principles of digital communication, whether that is 1-to-1, 1-to-many and many-to-many. This includes private messaging, social media, news, wikis etc.
 
+Alongside this we're deploying these novel experiments on a decentralized backend that is ready to scale, where you can self-host, group-host or delegate-host with state-of-the-art E2E encryption.
 
+The short-term roadmap is to create a better conversations-application, such as Signal/Telegram/Messenger. We see there being many low-hanging fruits there, both in the user-experience and in the privacy realm.
 
+Thereafter we'll launch a knowledge-management interface where users can interact with structured data whether that data emerge from conversations with others, brainstorm sessions, meetings, digital reading history or data previously entered in another structure.
 
-We need this this JS-IPFS PR released ```https://github.com/ipfs/js-ipfs/pull/4239``` to make things work again. 
+The long-term goal is to create a social knowledge graph where users can score each other and others claims on truthfulness, usefulness and agree on shared values. The goal is to lay the foundation for digital discussions to act as institutions.
 
 
 ## How it works
@@ -72,12 +75,12 @@ sudo apt-get install -y nodejs
 
 then install the CLI
 ```
-npm install -g pear2pear
+npm install -g daoxyz
 ```
 
 Documentation
 ```sh
-pear2pear --help
+daoxyz --help
 ```
 
 ### Example
@@ -85,12 +88,12 @@ Replicate (relay) "world topic" behind a subdomain
 
 (might need sudo because it will install Docker if missing 🤫)
 ```sh
-pear2pear domain create --email YOUR_EMAIL
+daoxyz domain create --email YOUR_EMAIL
 ```
 
 Start node
 ```
-pear2pear start --topic world
+daoxyz start --topic world
 ```
 
 
