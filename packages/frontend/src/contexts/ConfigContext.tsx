@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { createRootPosts, Posts } from 'pear2pear';
+import { createRootPosts, Posts } from 'dao.xyz';
 
 interface Config {
     posts: Posts,

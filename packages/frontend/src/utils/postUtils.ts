@@ -1,5 +1,5 @@
 
-import { Post, Posts } from "pear2pear";
+import { Post, Posts } from 'dao.xyz';
 import { AccountCache } from "./accountCache";
 import { Peerbit } from '@dao-xyz/peerbit';
 import { PageQueryRequest, ResultWithSource } from '@dao-xyz/peerbit-anysearch';

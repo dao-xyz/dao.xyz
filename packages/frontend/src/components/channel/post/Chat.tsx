@@ -8,7 +8,7 @@ import { useTheme } from "@mui/styles";
 import { ChannelLabelBreadcrumb } from "../ChannelLabelBreadcrumb";
 import CastleIcon from '@mui/icons-material/Castle';
 import InfoIcon from '@mui/icons-material/Info';
-import { Post, Posts } from 'pear2pear';
+
 export const Chat: FC<{}> = ({ }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [initialFeed, setInitialFeed] = React.useState(false);

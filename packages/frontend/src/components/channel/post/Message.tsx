@@ -11,7 +11,7 @@ import shiba from "../../../../src/shiba_inu_taiki.jpeg";
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import { useFeatures } from "../../../contexts/FeatureContext";
-import { CollaborativeText, Post, ProgramContent } from 'pear2pear';
+import { CollaborativeText, Post, ProgramContent } from 'dao.xyz';
 import { usePeer } from "../../../contexts/PeerContext";
 import { useConfig } from "../../../contexts/ConfigContext";
 

@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from 'react';
 import { Message } from "./Message";
-import { Post, Posts } from 'pear2pear';
+import { Post, Posts } from 'dao.xyz';
 import { PageQueryRequest, ResultWithSource } from '@dao-xyz/peerbit-anysearch';
 import { usePeer } from "../../../contexts/PeerContext";
 

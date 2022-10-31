@@ -10,7 +10,7 @@ import { BaseRoutes } from '../../routes/routes';
 import { usePosts } from '../../contexts/PostContext';
 import { useMatch } from 'react-router-dom';
 import { useFeatures } from '../../contexts/FeatureContext';
-import { Posts, Post } from 'pear2pear';
+import { Posts, Post } from 'dao.xyz';
 
 const drawerWidth = 240;
 

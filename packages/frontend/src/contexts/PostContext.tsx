@@ -3,7 +3,7 @@ import { Access, AccessType } from '@dao-xyz/peerbit-dynamic-access-controller';
 import { usePeer } from "./PeerContext";
 import { getParentPostChain, getParentPostChainTree, PostTree } from "../utils/postUtils";
 import { useConfig } from "./ConfigContext";
-import { Post, Posts } from "pear2pear";
+import { Post, Posts } from 'dao.xyz';
 import { Address } from '@dao-xyz/peerbit-store';
 
 interface PostSelection {

@@ -28,7 +28,7 @@ import AbcIcon from '@mui/icons-material/Abc';
 import { useTheme } from "@mui/styles";
 import { useFeatures } from "../../../contexts/FeatureContext";
 import { usePeer } from "../../../contexts/PeerContext";
-import { Post, CollaborativeText } from "pear2pear";
+import { Post, CollaborativeText } from 'dao.xyz';
 import { Range } from "@dao-xyz/peerbit-string";
 
 const REPLICATION_TOPIC = 'world';

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { startIpfs } from 'pear2pear';
+import { startIpfs } from 'dao.xyz';
 import { useAlert } from "./AlertContext";
 import { useWallet } from "@dao-xyz/wallet-adapter-react";
 import { MetaMaskWalletAdapter } from '@dao-xyz/wallet-adapter-metamask';

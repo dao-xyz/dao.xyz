@@ -1,13 +1,13 @@
 {
-  "name": "pear2pear",
-  "version": "0.0.7",
-  "author": "marcus",
+  "name": "dao.xyz",
+  "version": "0.0.1",
+  "author": "dao.xyz",
   "repository": "https://github.com/marcus-pousette",
   "license": "Apache-2.0",
   "type": "module",
   "sideEffects": false,
   "bin": {
-    "pear2pear": "./lib/esm/bin.js"
+    "daoxyz": "./lib/esm/bin.js"
   },
   "module": "lib/esm/index.mjs",
   "types": "lib/esm/index.d.ts",
