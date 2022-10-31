@@ -13,18 +13,3 @@ export const nodeGlobalSettings = async () => {
         events.defaultMaxListeners = 100;
     }
 }
-/* 
-export const createNode = async (ipfsNode: IPFS, identity?: Identity, options: { directory: string }): Promise<AnyPeer> => {
-
-    globalSettings();
-    console.log("Starting node ...")
-    const directoryId = (await ipfsNode.id()).id;
-
-    let orbitDB = await OrbitDB.createInstance(ipfsNode, { directory });
-    await peer.create({ options: serverOptions, orbitDB });
-
-    console.log("Created node with");
-    console.log("OrbitDB: " + peer.orbitDB.id);
-    console.log("IPFS: " + (await peer.node.id()).id);
-    return peer;
-} */
