@@ -9,6 +9,9 @@
   "bin": {
     "daoxyz": "./lib/esm/bin.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "module": "lib/esm/index.mjs",
   "types": "lib/esm/index.d.ts",
   "exports": {
