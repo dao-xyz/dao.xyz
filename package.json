@@ -37,11 +37,11 @@
     "postinstall": "patch-package"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
-    "eslint-config-react-app": "^7.0.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "eslint-config-react-app": "^7.0.1",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "react": "^18.2.0",
