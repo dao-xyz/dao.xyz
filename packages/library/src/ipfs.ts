@@ -53,7 +53,7 @@ export const startIpfs = async (type: 'js' | 'go', options?: { ipfsOptions?: IPF
     }
     const ipfsOptions = options?.ipfsOptions || {
         preload: {
-            enabled: false
+            enabled: true
         },
         EXPERIMENTAL: {
             pubsub: true
@@ -61,7 +61,7 @@ export const startIpfs = async (type: 'js' | 'go', options?: { ipfsOptions?: IPF
         config: {
             Addresses: {
                 API: '/ip4/127.0.0.1/tcp/0',
-                Swarm: ['/ip4/0.0.0.0/tcp/0'], // ["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/8081/ws", "/ip6/::/tcp/4001"], //
+                Swarm: ["/ip4/0.0.0.0/tcp/4001", "/ip4/0.0.0.0/tcp/8081/ws", "/ip6/::/tcp/4001"], //
                 Gateway: '/ip4/0.0.0.0/tcp/0'
             },
             Bootstrap: [],

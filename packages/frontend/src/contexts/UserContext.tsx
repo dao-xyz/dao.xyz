@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 import RedirectDialog from "../components/dialogs/RedirectDialog/RedirectDialog";
-import { Transaction } from "@solana/web3.js";
 import { USER_NEW } from "../routes/routes";
 import { useLocation } from "react-router";
 class User {

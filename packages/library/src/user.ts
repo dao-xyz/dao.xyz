@@ -37,7 +37,7 @@ export class User {
     // TODO add soul score
 }
 
-@variant([1, 2])
+@variant([1, 3])
 export class UsersInterface extends Program {
 
     @field({ type: Documents })

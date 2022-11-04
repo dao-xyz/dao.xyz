@@ -20,7 +20,6 @@ export const Message: FC<{ post: Post, commentsCount: number }> = ({ post, comme
     const [content, setContent] = useState<string | undefined>(undefined);
     const [username, setUsername] = useState<string | undefined>(undefined);
     const { peer } = usePeer();
-    const { config } = useConfig();
 
     const [date, setDate] = useState<string | undefined>(undefined);
     const { openNotReady } = useFeatures();

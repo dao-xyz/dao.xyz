@@ -1,5 +1,5 @@
 {
-  "name": "daoxyz",
+  "name": "dao.xyz",
   "version": "0.0.8",
   "author": "dao.xyz",
   "repository": "https://github.com/dao-xyz/dao.xyz",
@@ -47,12 +47,12 @@
     "yargs": "^17.6.0"
   },
   "dependencies": {
-    "@dao-xyz/peerbit": "^0.0.40",
-    "@dao-xyz/peerbit-document": "^0.0.111",
-    "@dao-xyz/peerbit-dynamic-access-controller": "^0.0.66",
-    "@dao-xyz/peerbit-network-discovery": "^0.0.37",
-    "@dao-xyz/peerbit-node": "^0.0.30",
-    "@dao-xyz/peerbit-string": "^0.0.100",
+    "@dao-xyz/peerbit": "^0.0.43",
+    "@dao-xyz/peerbit-document": "^0.0.113",
+    "@dao-xyz/peerbit-dynamic-access-controller": "^0.0.69",
+    "@dao-xyz/peerbit-network-discovery": "^0.0.40",
+    "@dao-xyz/peerbit-node": "^0.0.34",
+    "@dao-xyz/peerbit-string": "^0.0.102",
     "buffer": "^6.0.3"
   }
 }

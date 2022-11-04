@@ -8,13 +8,14 @@ import { useTheme } from "@mui/styles";
 import { ChannelLabelBreadcrumb } from "../ChannelLabelBreadcrumb";
 import CastleIcon from '@mui/icons-material/Castle';
 import InfoIcon from '@mui/icons-material/Info';
+import { Post } from "dao.xyz";
 
 export const Chat: FC<{}> = ({ }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const [initialFeed, setInitialFeed] = React.useState(false);
 
     const [showNewMessageAlert, setShowNewMessageAlert] = React.useState(false);
-    const [createdPost, setCreatedPost] = React.useState<string | undefined>(undefined);
+    const [createdPost, setCreatedPost] = React.useState<Post>(undefined);
     const [scrollTop, setScrollTop] = useState(0);
     const theme = useTheme();
     const { width } = useScrollbarSize();
@@ -110,7 +111,7 @@ export const Chat: FC<{}> = ({ }) => {
                         <Grid item sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
                             <Card sx={{ width: '100%', flex: 1, maxWidth: 'md' }} raised elevation={8}>
                                 <CardContent sx={{ pb: "4px !important" }}>
-                                    {posts?.address?.toString() ? <NewPost previewable={true} onCreation={setCreatedPost} parentPost={undefined} /> : <></>}
+                                    {posts?.address?.toString() ? <NewPost previewable={true} onCreation={setCreatedPost} posts={posts} /> : <></>}
                                 </CardContent>
                             </Card>
                         </Grid>

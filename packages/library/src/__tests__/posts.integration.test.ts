@@ -4,7 +4,8 @@ import { Session } from '@dao-xyz/peerbit-test-utils';
 // @ts-ignore
 import { v4 as uuid } from 'uuid';
 import { createRootPosts } from '../node';
-import { serialize } from '@dao-xyz/borsh';
+import { serialize, deserialize } from '@dao-xyz/borsh';
+import { Posts } from '../post';
 
 describe('node', () => {
     let session: Session, peer: Peerbit
@@ -28,5 +29,11 @@ describe('node', () => {
         const ser1 = serialize(createRootPosts({ identity: peer.identity.publicKey }));
         const ser2 = serialize(createRootPosts({ identity: peer.identity.publicKey }));
         expect(ser1).toEqual(ser2);
+    })
+
+    it('can ser der', async () => {
+        const ser1 = serialize(createRootPosts({ identity: peer.identity.publicKey }));
+        const der = deserialize(ser1, Posts)
+        expect(der).toBeDefined();
     })
 });

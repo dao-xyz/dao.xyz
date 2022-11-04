@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import { WalletReadyState } from '@dao-xyz/wallet-adapter-base';
 import { Wallet } from '@dao-xyz/wallet-adapter-react';
 import { WalletIcon } from '@dao-xyz/wallet-adapter-material-ui';
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 export interface WalletListItemProps {
     handleClick: MouseEventHandler<HTMLButtonElement>;

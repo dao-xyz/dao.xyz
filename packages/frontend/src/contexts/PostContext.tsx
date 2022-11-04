@@ -4,7 +4,9 @@ import { usePeer } from "./PeerContext";
 import { getParentPostChain, getParentPostChainTree, PostTree } from "../utils/postUtils";
 import { useConfig } from "./ConfigContext";
 import { Post, Posts } from 'dao.xyz';
+import networkConfig from './../network.json';
 import { Address } from '@dao-xyz/peerbit-store';
+import { CID } from 'multiformats/cid'
 
 interface PostSelection {
   selectionPath: Post[];
@@ -18,6 +20,7 @@ interface PostSelection {
 }
 interface IPostContext {
   posts: Posts,
+  replicationTopic: string,
   loading: boolean;
   selection: PostSelection;
   select: (postCID: string) => Promise<void>;
@@ -53,8 +56,7 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
     authoritiesByType: undefined,
     post: undefined,
   });
-  const { config } = useConfig();
-  const { peer } = usePeer();
+  const { peer, rootIdentity } = usePeer();
   const [loading, setLoading] = useState(false);
   const [root, setRoot] = useState<Posts>();
   const [loadingRoot, setLoadingRoot] = useState(false);
@@ -62,29 +64,32 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
   if (peer) {
     peer?.ipfs.pubsub.ls().then((ls) => console.log(ls));
   }
+
   useEffect(() => {
+    console.log('POST CONTEXT EFFECT', peer?.ipfs)
     if (peer?.ipfs) {
       setLoadingRoot(true);
-      if (!config.posts.initialized) {
-        // Address.parse("/peerbit/zdpuB2pw8hxT8EK4WJ1DMeGPUfxoferspohXTmMNhV9nTguBD")
-        peer.open<Posts>(new Posts({ id: 'root' }), { replicationTopic: config.replicationTopic }).then(posts => {
-          setRoot(posts);
-          console.log('loaded posts: ' + config.posts)
-        }).finally(() => {
-          setLoadingRoot(false);
-        })
-      }
-      else {
-        setRoot(config.posts)
-      }
+      // Address.parse("/peerbit/zdpuB2pw8hxT8EK4WJ1DMeGPUfxoferspohXTmMNhV9nTguBD")
+      console.log('open!')
+      console.log('address!: ' + networkConfig.postsAddress);
+      peer.open<Posts>(Address.parse(networkConfig.postsAddress), { replicate: false, replicationTopic: networkConfig.networkAddress }).then(async (posts) => {
+        console.log('got posts', posts);
+        setRoot(posts);
+
+        // use the root identity to trust the hot identity
+        await posts.acl.identityGraphController.addRelation(peer.identity.publicKey, { identity: rootIdentity })
+      }).catch((e) => console.error("ERROR", e)).finally(() => {
+        setLoadingRoot(false);
+      })
+
     }
   },
-    [config?.posts?.address?.toString(), !!peer?.ipfs])
+    [networkConfig.postsAddress, !!peer?.ipfs])
   const selectionMemo = React.useMemo(
     () => ({
       selection,
       loading,
-      root,
+      replicationTopic: networkConfig.networkAddress || 'world',
       posts: root,
       select: async (address: string) => {
         if (!peer?.ipfs) {
@@ -142,7 +147,7 @@ export const PostsProvider = ({ children }: { children: JSX.Element }) => {
         setLoading(false);
       },
       loadingRoot
-    }),
+    } as IPostContext),
     [selection, loading, root?.address?.toString(), !!peer?.ipfs, loadingRoot]
   );
 

@@ -28,11 +28,11 @@ import AbcIcon from '@mui/icons-material/Abc';
 import { useTheme } from "@mui/styles";
 import { useFeatures } from "../../../contexts/FeatureContext";
 import { usePeer } from "../../../contexts/PeerContext";
-import { Post, CollaborativeText } from 'dao.xyz';
+import { Post, CollaborativeText, ProgramContent, Posts } from 'dao.xyz';
 import { Range } from "@dao-xyz/peerbit-string";
 
-const REPLICATION_TOPIC = 'world';
-export function NewPost(props: { previewable?: boolean, parentPost: Post, onCreation: (post: string) => any }) {
+const REPLICATION_TOPIC = '/peerbit/zdpuAtDLgW2axxfriQ8RQDBbJynSCybyRVbP1CNUKw851S2yc';
+export function NewPost(props: { previewable?: boolean, posts: Posts, onCreation: (post: Post) => any }) {
     const [text, setText] = React.useState('');
     const { publicKey } = useWallet();
     const [loading, setLoading] = React.useState(false);
@@ -67,7 +67,10 @@ export function NewPost(props: { previewable?: boolean, parentPost: Post, onCrea
               console.log((await peer.node.swarm.peers()).map(x => x.addr.toString())) */
         let post = new Post({ content: new CollaborativeText({}) })
         post = await peer.open<Post>(post, { replicationTopic: REPLICATION_TOPIC });
-        await post.getContent<CollaborativeText>().text.add(text, new Range({ offset: 0, length: text.length }));
+        console.log(post.getContent<ProgramContent>(), post.getContent<ProgramContent>().getProgram<CollaborativeText>().text)
+        await post.getContent<ProgramContent>().getProgram<CollaborativeText>().text.add(text, new Range({ offset: 0, length: text.length }));
+        await props.posts.posts.put(post, { skipCanAppendCheck: true })
+        console.log('posts after? ', post.getContent<ProgramContent>().getProgram<CollaborativeText>().text, props.posts)
         try {
 
 

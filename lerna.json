@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/library"
+    "packages/library",
+    "packages/frontend"
   ],
   "version": "independent",
   "npmClient": "yarn",
