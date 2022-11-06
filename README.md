@@ -7,6 +7,7 @@
 </h3>
 <br>
 
+
 DAO.xyz is creating a communications app where we rethink first principles of digital communication, whether that is 1-to-1, 1-to-many and many-to-many. This includes private messaging, social media, news, wikis etc.
 
 Alongside this we're deploying these novel experiments on a decentralized backend that is ready to scale, where you can self-host, group-host or delegate-host with state-of-the-art E2E encryption.
@@ -17,7 +18,8 @@ Thereafter we'll launch a knowledge-management interface where users can interac
 
 The long-term goal is to create a social knowledge graph where users can score each other and others claims on truthfulness, usefulness and agree on shared values. The goal is to lay the foundation for digital discussions to act as institutions.
 
-# 🚧 WIP 👷‍♂️ 
+#
+# 🚧 WIP 🚧 
 
 
 ## How it works
